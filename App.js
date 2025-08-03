@@ -1,6 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, SafeAreaView, ImageBackground } from 'react-native';
-// Importamos Svg y Path para poder usar iconos SVG
 import Svg, { Path } from 'react-native-svg';
 
 // Componente para el ícono de lazo
@@ -80,7 +79,7 @@ const ArrowRightIcon = ({ size = 14, color = 'black' }) => (
 
 
 export default function App() {
-  // Datos de ejemplo para las secciones de productos y accesorios
+  
   const productData = {
     top: {
       image: 'https://placehold.co/600x600/f0f0f0/ffffff?text=Top',
@@ -98,7 +97,7 @@ export default function App() {
   };
 
   return (
-    // Se ha reemplazado View por ImageBackground para usar una imagen de fondo
+   
     <ImageBackground 
       source={require('./assets/background.jpeg')} 
       style={styles.container}
@@ -205,10 +204,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 15,
-    backgroundColor: 'rgba(255, 255, 255, 0.8)', // Fondo semi-transparente
+    backgroundColor: 'rgba(255, 255, 255, 0.8)', 
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
-    marginTop: 30, // Para iOS
+    marginTop: 30, 
   },
   headerTextContainer: {
     flexDirection: 'column',
@@ -282,7 +281,7 @@ const styles = StyleSheet.create({
   },
   accessoryItem: {
     marginHorizontal: 5,
-    backgroundColor: 'rgba(255, 255, 255, 0.9)', // Fondo semi-transparente
+    backgroundColor: 'rgba(255, 255, 255, 0.9)', 
     padding: 5,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
