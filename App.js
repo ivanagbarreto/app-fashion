@@ -181,84 +181,65 @@ export default function App() {
   const animatingBottom = useRef(false);
 
   // Función animar imágenes con fade y cambio rápido (desfile)
- const animateImages = (
-  currentIndex,
-  imagesArray,
-  setIndex,
-  fadeAnim,
-  animRef,
-  direction = 'next'
-) => {
-  if (animRef.current) return; // bloquea si ya está animando
-  animRef.current = true;
-
-  const totalDuration = 600;
-  const count = imagesArray.length;
-  const interval = totalDuration / count;
-
-  let i = 0;
-
-  const intervalId = setInterval(() => {
-    let newIndex;
-    if (direction === 'next') {
-      newIndex = (currentIndex + i) % count;
-    } else {
-      newIndex = (currentIndex - i + count) % count;
-    }
-
-    // Primero fade out
-    Animated.timing(fadeAnim, {
-      toValue: 0,
-      duration: interval / 2,
-      useNativeDriver: true,
-    }).start(() => {
-      
-      setIndex(newIndex);
-
-      
+ const fadeAnimation = (fadeAnim, toValue, duration) => {
+    return new Promise((resolve) => {
       Animated.timing(fadeAnim, {
-        toValue: 1,
-        duration: interval / 2,
+        toValue,
+        duration,
         useNativeDriver: true,
-      }).start();
+      }).start(() => resolve());
     });
+  };
 
-    i++;
-    if (i >= count) {
-      clearInterval(intervalId);
-      animRef.current = false;
+  // Función animar imágenes con fade y cambio secuencial
+  const animateImages = async (
+    currentIndex,
+    imagesArray,
+    setIndex,
+    fadeAnim,
+    animRef,
+    direction = 'next'
+  ) => {
+    if (animRef.current) return;
+    animRef.current = true;
+
+    const totalDuration = 600; // ms para todo el ciclo (puedes subir para hacerlo más lento)
+    const count = imagesArray.length;
+    const interval = totalDuration / count;
+
+    let i = 0;
+
+    while (i < count) {
+      let newIndex;
+      if (direction === 'next') {
+        newIndex = (currentIndex + i) % count;
+      } else {
+        newIndex = (currentIndex - i + count) % count;
+      }
+
+      await fadeAnimation(fadeAnim, 0, interval / 2);
+      setIndex(newIndex);
+      await fadeAnimation(fadeAnim, 1, interval / 2);
+
+      i++;
     }
-  }, interval);
-};
-  
+
+    animRef.current = false;
+  };
+
   const handleTopNext = () => {
     animateImages(topIndex, topImages, setTopIndex, fadeAnimTop, animatingTop, 'next');
   };
   const handleTopPrev = () => {
     animateImages(topIndex, topImages, setTopIndex, fadeAnimTop, animatingTop, 'prev');
   };
-
-  
   const handleBottomNext = () => {
-    animateImages(
-      bottomIndex,
-      bottomImages,
-      setBottomIndex,
-      fadeAnimBottom,
-      animatingBottom,
-      'next'
-    );
+    animateImages(bottomIndex, bottomImages, setBottomIndex, fadeAnimBottom, animatingBottom, 'next');
   };
   const handleBottomPrev = () => {
-    animateImages(
-      bottomIndex,
-      bottomImages,
-      setBottomIndex,
-      fadeAnimBottom,
-      animatingBottom,
-      'prev'
-    );
+    animateImages(bottomIndex, bottomImages, setBottomIndex, fadeAnimBottom, animatingBottom, 'prev');
   };
+
 
   const productData = {
     accessories: [
@@ -302,7 +283,7 @@ export default function App() {
           <View style={styles.productSection}>
             <Animated.Image
               source={topImages[topIndex]}
-              style={[styles.productImage, { opacity: fadeAnimTop }]}
+              style={styles.productImage}
             />
             <View style={styles.navigationButtons}>
               <TouchableOpacity onPress={handleTopPrev} style={styles.navButton}>
@@ -318,7 +299,7 @@ export default function App() {
           <View style={styles.productSection}>
             <Animated.Image
               source={bottomImages[bottomIndex]}
-              style={[styles.productImage, { opacity: fadeAnimBottom }]}
+              style={styles.productImage}
             />
             <View style={styles.navigationButtons}>
               <TouchableOpacity onPress={handleBottomPrev} style={styles.navButton}>
@@ -342,7 +323,7 @@ export default function App() {
           </View>
         </View>
 
-        {/* Barra de tabs */}
+      
         <View style={styles.tabBar}>
           <TouchableOpacity style={styles.tabItem}>
             <HomeIcon color="#000000" />
