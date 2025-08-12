@@ -150,7 +150,7 @@ const ArrowRightIcon = ({ size = 14, color = 'black' }) => (
 import React, { useState, useRef } from 'react';
 
 export default function App() {
-  // Tus arrays de imágenes para tops y bottoms
+  
   const topImages = [
     require('./assets/ropa/tops/top1.jpg'),
     require('./assets/ropa/tops/top2.jpg'),
@@ -164,23 +164,23 @@ export default function App() {
     require('./assets/ropa/bottoms/bottom1.jpg'),
     require('./assets/ropa/bottoms/bottom2.jpg'),
     require('./assets/ropa/bottoms/bottom3.jpg'),
-     require('./assets/ropa/bottoms/bottom4.jpg'),
-      require('./assets/ropa/bottoms/bottom5.jpg'),
-       require('./assets/ropa/bottoms/bottom6.jpg'),
-        require('./assets/ropa/bottoms/bottom7.jpg'),
+    require('./assets/ropa/bottoms/bottom4.jpg'),
+    require('./assets/ropa/bottoms/bottom5.jpg'),
+    require('./assets/ropa/bottoms/bottom6.jpg'),
+       require('./assets/ropa/bottoms/bottom7.jpg'),
   ];
 
-  // Estados para índices y animaciones fade
+ 
   const [topIndex, setTopIndex] = useState(0);
   const [bottomIndex, setBottomIndex] = useState(0);
   const fadeAnimTop = useRef(new Animated.Value(1)).current;
   const fadeAnimBottom = useRef(new Animated.Value(1)).current;
 
-  // Para evitar pulsar mientras anima
+  
   const animatingTop = useRef(false);
   const animatingBottom = useRef(false);
 
-  // Función animar imágenes con fade y cambio rápido (desfile)
+  
  const fadeAnimation = (fadeAnim, toValue, duration) => {
     return new Promise((resolve) => {
       Animated.timing(fadeAnim, {
@@ -191,7 +191,7 @@ export default function App() {
     });
   };
 
-  // Función animar imágenes con fade y cambio secuencial
+
   const animateImages = async (
     currentIndex,
     imagesArray,
@@ -203,7 +203,7 @@ export default function App() {
     if (animRef.current) return;
     animRef.current = true;
 
-    const totalDuration = 600; // ms para todo el ciclo (puedes subir para hacerlo más lento)
+    const totalDuration = 600; 
     const count = imagesArray.length;
     const interval = totalDuration / count;
 
@@ -259,7 +259,7 @@ export default function App() {
         resizeMode="cover"
       >
         <StatusBar style="auto" />
-
+      
         {/* Header */}
         <View style={styles.header}>
           <RibbonIcon color="#000000" />
@@ -277,13 +277,14 @@ export default function App() {
           </View>
         </View>
 
-        {/* Contenido principal con tops y bottoms animados */}
+        
         <View style={styles.mainContent}>
           {/* Sección Top */}
-          <View style={styles.productSection}>
+          <View style={styles.productSection} pointerEvents="box-none">
             <Animated.Image
               source={topImages[topIndex]}
               style={styles.productImage}
+              pointerEvents="box-none" 
             />
             <View style={styles.navigationButtons}>
               <TouchableOpacity onPress={handleTopPrev} style={styles.navButton}>
@@ -296,10 +297,11 @@ export default function App() {
           </View>
 
           {/* Sección Bottom */}
-          <View style={styles.productSection}>
+          <View style={styles.productSection} pointerEvents="box-none">
             <Animated.Image
               source={bottomImages[bottomIndex]}
               style={styles.productImage}
+              pointerEvents="box-none" 
             />
             <View style={styles.navigationButtons}>
               <TouchableOpacity onPress={handleBottomPrev} style={styles.navButton}>
@@ -418,6 +420,7 @@ const styles = StyleSheet.create({
     borderRightColor: '#808080',
     borderBottomColor: '#808080',
 
+    zIndex: 10,  
   },
   accessoriesSection: {
     padding: 10,
