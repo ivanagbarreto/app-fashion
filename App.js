@@ -294,6 +294,7 @@ export default function App() {
                 <ArrowRightIcon color="#000" />
               </TouchableOpacity>
             </View>
+         
           </View>
 
           {/* Sección Bottom */}
@@ -394,12 +395,15 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 10,
     alignItems: 'center',
+    
   },
   productImage: {
-    width: '100%',
+    width: 150,
     height: 150,
-    borderRadius: 10,
     resizeMode: 'contain',
+   /* borderWidth: 2,        
+  borderColor: '#ccc',*/
+   
   },
   navigationButtons: {
     flexDirection: 'row',
@@ -464,4 +468,5 @@ const styles = StyleSheet.create({
     color: '#000000',
     marginTop: 4,
   },
+
 });
