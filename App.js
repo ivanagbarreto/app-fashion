@@ -11,8 +11,52 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import Svg, { Path } from "react-native-svg";
 import { Modal } from "react-native";
-import { Calendar } from "react-native-calendars";
+import { Calendar, LocaleConfig } from "react-native-calendars";
 import { useFonts } from "expo-font";
+
+// Configuración de idioma español para el calendario
+LocaleConfig.locales["es"] = {
+  monthNames: [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
+  ],
+  monthNamesShort: [
+    "Ene",
+    "Feb",
+    "Mar",
+    "Abr",
+    "May",
+    "Jun",
+    "Jul",
+    "Ago",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dic",
+  ],
+  dayNames: [
+    "Domingo",
+    "Lunes",
+    "Martes",
+    "Miércoles",
+    "Jueves",
+    "Viernes",
+    "Sábado",
+  ],
+  dayNamesShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+  today: "Hoy",
+};
+LocaleConfig.defaultLocale = "es";
 
 const RibbonIcon = ({ size = 24, color = "black" }) => (
   <Svg width={size} height={size} viewBox="0 0 512 512" fill="none">
@@ -431,8 +475,8 @@ export default function App() {
                   calendarBackground: "#F3A6B2",
                   textSectionTitleColor: "#333",
                   selectedDayBackgroundColor: "#F3A6B2",
-                  selectedDayTextColor: "#fff",
-                  todayTextColor: "#996666",
+                  selectedDayTextColor: "#996666",
+                  todayTextColor: "#E5E4E7",
                   dayTextColor: "#000",
                   monthTextColor: "#000",
                   textMonthFontWeight: "bold",
