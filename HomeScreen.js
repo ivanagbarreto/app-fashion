@@ -1,32 +1,4 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import HomeScreen from "./HomeScreen";
-import OutfitScreen from "./OutfitScreen";
-
-const Stack = createStackNavigator();
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Outfit" component={OutfitScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
-
-
-
-
-
-
-
-
-
-
-/*import { StatusBar } from "expo-status-bar";
+import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
@@ -234,7 +206,7 @@ const ArrowRightIcon = ({ size = 14, color = "black" }) => (
 
 import React, { useState, useRef } from "react";
 
-export default function App() {
+export default function App({ navigation }) {
   const topImages = [
     require("./assets/ropa/tops/top1.jpg"),
     require("./assets/ropa/tops/top2.jpg"),
@@ -518,7 +490,8 @@ export default function App() {
                 }}
                 onDayPress={(day) => {
                   setSelectedDate(day.dateString);
-                  setModalVisible(false);
+                     setModalVisible(false);
+                    navigation.navigate("Outfit", { date: day.dateString });
                 }}
                 markedDates={{
                   [selectedDate]: { selected: true, selectedColor: "#F3A6B2" },
@@ -678,6 +651,4 @@ const styles = StyleSheet.create({
     borderRightColor: "#808080",
     borderBottomColor: "#808080",
   },
-});*/
-
-
+});
