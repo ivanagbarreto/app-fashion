@@ -371,10 +371,10 @@ const animateImages = async (
           <View style={styles.rightSection}>
           
             <TouchableOpacity style={styles.iconButton}>
-              <HeartIcon color="#000000" />
+              <HeartIcon color="#333333" />
             </TouchableOpacity>
             <TouchableOpacity style={styles.iconButton}>
-              <UserIcon color="#000000" />
+              <UserIcon color="#333333" />
             </TouchableOpacity>
           </View>
       
@@ -392,13 +392,13 @@ const animateImages = async (
                 onPress={handleTopPrev}
                 style={styles.navButton}
               >
-                <ArrowLeftIcon color="#000" />
+                <ArrowLeftIcon color="#333333" />
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={handleTopNext}
                 style={styles.navButton}
               >
-                <ArrowRightIcon color="#000" />
+                <ArrowRightIcon color="#333333" />
               </TouchableOpacity>
             </View>
           </View>
