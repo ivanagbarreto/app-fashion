@@ -245,41 +245,47 @@ export default function App({ navigation }) {
       }).start(() => resolve());
     });
   };
+  const shuffleArray = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};
 
-  const animateImages = async (
-    currentIndex,
-    imagesArray,
-    setIndex,
-    fadeAnim,
-    animRef,
-    direction = "next"
-  ) => {
-    if (animRef.current) return;
-    animRef.current = true;
+const animateImages = async (
+  currentIndex,
+  imagesArray,
+  setIndex,
+  fadeAnim,
+  animRef
+) => {
+  if (animRef.current) return;
+  animRef.current = true;
 
-    const totalDuration = 600;
-    const count = imagesArray.length;
-    const interval = totalDuration / count;
+  const totalDuration = 600;
+  const count = imagesArray.length;
+  const interval = totalDuration / count;
 
-    let i = 0;
 
-    while (i < count) {
-      let newIndex;
-      if (direction === "next") {
-        newIndex = (currentIndex + i) % count;
-      } else {
-        newIndex = (currentIndex - i + count) % count;
-      }
+  const imageIndices = [...Array(count).keys()]; 
+  const shuffledIndices = shuffleArray(imageIndices);
 
-      await fadeAnimation(fadeAnim, 0, interval / 2);
-      setIndex(newIndex);
-      await fadeAnimation(fadeAnim, 1, interval / 2);
+  let i = 0;
 
-      i++;
-    }
+  while (i < count) {
+    
+    const newIndex = shuffledIndices[i];
 
-    animRef.current = false;
-  };
+    await fadeAnimation(fadeAnim, 0, interval / 2);
+    setIndex(newIndex);
+    await fadeAnimation(fadeAnim, 1, interval / 2);
+
+    i++;
+  }
+
+  animRef.current = false;
+};
 
   const handleTopNext = () => {
     animateImages(
