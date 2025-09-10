@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./HomeScreen";
 import OutfitScreen from "./OutfitScreen";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
 
+SplashScreen.preventAutoHideAsync();
 const Stack = createStackNavigator();
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    "PressStart2P-Regular": require("./assets/fonts/PressStart2P-Regular.ttf"),
+    "PlayfairDisplay-Bold":require("./assets/fonts/PlayfairDisplay-Bold.ttf")
+  });
+
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -16,14 +34,6 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-
-
-
-
-
-
-
 
 
 /*import { StatusBar } from "expo-status-bar";
@@ -679,5 +689,3 @@ const styles = StyleSheet.create({
     borderBottomColor: "#808080",
   },
 });*/
-
-

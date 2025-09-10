@@ -351,23 +351,30 @@ export default function App({ navigation }) {
         <StatusBar style="auto" />
 
         <View style={styles.header}>
-          <RibbonIcon color="#000000" />
+          <View style={styles.leftSection}>
+          <Image
+            source={require("./assets/ribbon.png")} 
+            style={styles.logo}
+            resizeMode="contain"
+          />
           <View style={styles.headerTextContainer}>
-            <Text style={styles.headerTitle}>HOLA</Text>
-            <Text style={styles.headerSubtitle}>Ivana!</Text>
+            <Text style={styles.headerTitle}>FITCHECK</Text>
+            {/*<Text style={styles.headerSubtitle}>Ivana!</Text>*/}
           </View>
-          <View style={styles.headerIcons}>
-            <TouchableOpacity>
+          </View>
+          <View style={styles.rightSection}>
+          
+            <TouchableOpacity style={styles.iconButton}>
               <HeartIcon color="#000000" />
             </TouchableOpacity>
-            <TouchableOpacity style={{ marginLeft: 15 }}>
+            <TouchableOpacity style={styles.iconButton}>
               <UserIcon color="#000000" />
             </TouchableOpacity>
           </View>
+      
         </View>
 
         <View style={styles.mainContent}>
-         
           <View style={styles.productSection} pointerEvents="box-none">
             <Animated.Image
               source={topImages[topIndex]}
@@ -390,7 +397,6 @@ export default function App({ navigation }) {
             </View>
           </View>
 
-      
           <View style={styles.productSection} pointerEvents="box-none">
             <Animated.Image
               source={bottomImages[bottomIndex]}
@@ -414,7 +420,6 @@ export default function App({ navigation }) {
           </View>
         </View>
 
-       
         <View style={styles.accessoriesSection}>
           <View style={styles.accessoriesContainer}>
             {productData.accessories.map((accessory) => (
@@ -427,26 +432,26 @@ export default function App({ navigation }) {
 
         <View style={styles.tabBar}>
           <TouchableOpacity style={styles.tabItem}>
-            <HomeIcon color="#000000" />
+            <HomeIcon color="#333333" />
             <Text style={styles.tabText}>Inicio</Text>
           </TouchableOpacity>
-          <TouchableOpacity
+          {/*<TouchableOpacity
             style={styles.tabItem}
             onPress={() => setModalVisible(true)}
           >
             <CalendarIcon color="#000000" />
             <Text style={styles.tabText}>Planificar</Text>
-          </TouchableOpacity>
+          </TouchableOpacity>*/}
           <TouchableOpacity style={styles.tabItem}>
-            <PlusIcon color="#000000" />
+            <PlusIcon color="#333333" />
             <Text style={styles.tabText}>Cargar</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.tabItem}>
-            <DressIcon color="#000000" />
+            <DressIcon color="#333333" />
             <Text style={styles.tabText}>Vestidor</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.tabItem}>
-            <UserIcon color="#000000" />
+            <UserIcon color="#333333" />
             <Text style={styles.tabText}>Perfil</Text>
           </TouchableOpacity>
         </View>
@@ -490,8 +495,8 @@ export default function App({ navigation }) {
                 }}
                 onDayPress={(day) => {
                   setSelectedDate(day.dateString);
-                     setModalVisible(false);
-                    navigation.navigate("Outfit", { date: day.dateString });
+                  setModalVisible(false);
+                  navigation.navigate("Outfit", { date: day.dateString });
                 }}
                 markedDates={{
                   [selectedDate]: { selected: true, selectedColor: "#F3A6B2" },
@@ -516,23 +521,48 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: 15,
-    backgroundColor: "rgba(255, 255, 255, 0.8)",
-    borderBottomWidth: 1,
-    borderBottomColor: "#eee",
+        flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between', 
+    paddingHorizontal: 20, 
+    paddingVertical: 15, 
+    backgroundColor: '#FFFFFF', 
+    borderBottomWidth: 1, 
+    borderBottomColor: '#E0E0E0',
   },
-  headerTextContainer: {
-    flexDirection: "column",
-    alignItems: "flex-start",
-    flex: 1,
-    marginLeft: 15,
+    leftSection: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
+    headerTitle: {
+    fontSize: 20,
+    fontWeight: 'bold', 
+    color: '#333333', 
+    letterSpacing: 1, 
+  },
+  rightSection: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+    iconButton: {
+    marginLeft: 20, 
+  },
+
   headerTitle: {
-    fontSize: 24,
-    fontWeight: "bold",
+    fontSize: 15,
+   color:" #FFFFFF",
+    fontFamily: "PressStart2P-Regular",
+    textShadowColor: "#000",
+    textShadowOffset: { width: 1, height: 1 }, 
+    textShadowRadius: 0,
+    letterSpacing: 1, 
+    marginTop: 8,
+    
+  },
+    logo: {
+    width: 24, 
+    height: 24,
+    marginRight: 10, 
   },
   headerSubtitle: {
     fontSize: 18,
@@ -556,7 +586,6 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     resizeMode: "contain",
-    
   },
   navigationButtons: {
     flexDirection: "row",
@@ -566,7 +595,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   navButton: {
-    backgroundColor: "#C0C0C0",
+    backgroundColor: "#ebebeb",
     width: 80,
     height: 45,
     alignItems: "center",
@@ -590,7 +619,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     backgroundColor: "rgba(255, 255, 255, 0.9)",
     padding: 5,
-    shadowColor: "#000",
+    shadowColor: "#333333",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 5,
@@ -605,7 +634,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    backgroundColor: "#F3A6B2",
+    backgroundColor: "#F8E3EE",
     height: 70,
     borderTopWidth: 1,
     borderTopColor: "#ddd",
@@ -618,7 +647,7 @@ const styles = StyleSheet.create({
   },
   tabText: {
     fontSize: 12,
-    color: "#000000",
+    color: "#333333",
     marginTop: 4,
   },
   modalOverlay: {
@@ -629,7 +658,7 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     width: "90%",
-    backgroundColor: "#F3A6B2",
+    backgroundColor: "#f2cad0ff",
     borderRadius: 12,
     padding: 20,
     alignItems: "center",
@@ -640,6 +669,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontFamily: "PressStart2PRegular",
   },
+   
   closeButton: {
     marginTop: 15,
     backgroundColor: "#C0C0C0",
