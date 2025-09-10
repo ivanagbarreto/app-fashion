@@ -12,7 +12,10 @@ const Stack = createStackNavigator();
 export default function App() {
   const [fontsLoaded] = useFonts({
     "PressStart2P-Regular": require("./assets/fonts/PressStart2P-Regular.ttf"),
-    "PlayfairDisplay-Bold":require("./assets/fonts/PlayfairDisplay-Bold.ttf")
+    "PlayfairDisplay-Bold":require("./assets/fonts/PlayfairDisplay-Bold.ttf"),
+    "RobotoCondensed-Regular": require("./assets/fonts/RobotoCondensed-Regular.ttf"),
+    "Gugi-Regular": require("./assets/fonts/Gugi-Regular.ttf"),
+    "VT323-Regular": require("./assets/fonts/VT323-Regular.ttf"),
   });
 
   useEffect(() => {

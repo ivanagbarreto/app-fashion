@@ -14,7 +14,7 @@ import { Modal } from "react-native";
 import { Calendar, LocaleConfig } from "react-native-calendars";
 import { useFonts } from "expo-font";
 
-// Configuración de idioma español para el calendario
+
 LocaleConfig.locales["es"] = {
   monthNames: [
     "Enero",
@@ -364,7 +364,7 @@ const animateImages = async (
             resizeMode="contain"
           />
           <View style={styles.headerTextContainer}>
-            <Text style={styles.headerTitle}>FITCHECK</Text>
+            <Text style={styles.headerTitle}>MIX&MATCH</Text>
             {/*<Text style={styles.headerSubtitle}>Ivana!</Text>*/}
           </View>
           </View>
@@ -555,20 +555,21 @@ const styles = StyleSheet.create({
   },
 
   headerTitle: {
-    fontSize: 15,
+    fontSize: 25,
    color:" #FFFFFF",
-    fontFamily: "PressStart2P-Regular",
+    fontFamily: "VT323-Regular",
     textShadowColor: "#000",
     textShadowOffset: { width: 1, height: 1 }, 
     textShadowRadius: 0,
     letterSpacing: 1, 
-    marginTop: 8,
+    marginBottom:4,
     
   },
     logo: {
-    width: 24, 
-    height: 24,
+    width: 32, 
+    height: 32,
     marginRight: 10, 
+marginTop:4,
   },
   headerSubtitle: {
     fontSize: 18,
@@ -655,6 +656,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#333333",
     marginTop: 4,
+    fontFamily:"RobotoCondensed-Regular"
   },
   modalOverlay: {
     flex: 1,
