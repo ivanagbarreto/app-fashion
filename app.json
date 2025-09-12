@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "wardrobe",
-    "slug": "appinicio",
+    "name": "mix&match",
+    "slug": "mixymatch",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,18 +21,18 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.ivanagbarreto.wardrobe"
+      "package": "com.ivanageraldine.mixymatch"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "extra": {
-      "eas": {
-        "projectId": "0d109c4f-ade2-4459-930b-53cf5ae861ca"
-      }
-    },
     "plugins": [
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "d08464ef-2a9f-47d6-8cb9-2467d674911e"
+      }
+    }
   }
 }

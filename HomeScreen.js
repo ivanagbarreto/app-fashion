@@ -368,15 +368,7 @@ const animateImages = async (
             {/*<Text style={styles.headerSubtitle}>Ivana!</Text>*/}
           </View>
           </View>
-          <View style={styles.rightSection}>
           
-            <TouchableOpacity style={styles.iconButton}>
-              <HeartIcon color="#333333" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.iconButton}>
-              <UserIcon color="#333333" />
-            </TouchableOpacity>
-          </View>
       
         </View>
 
@@ -456,6 +448,7 @@ const animateImages = async (
             <DressIcon color="#333333" />
             <Text style={styles.tabText}>Vestidor</Text>
           </TouchableOpacity>
+          
           <TouchableOpacity style={styles.tabItem}>
             <UserIcon color="#333333" />
             <Text style={styles.tabText}>Perfil</Text>
