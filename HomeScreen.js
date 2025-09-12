@@ -1,3 +1,5 @@
+// HomeScreen.js
+
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -13,6 +15,7 @@ import Svg, { Path } from "react-native-svg";
 import { Modal } from "react-native";
 import { Calendar, LocaleConfig } from "react-native-calendars";
 import { useFonts } from "expo-font";
+import React, { useState, useRef } from "react";
 
 
 LocaleConfig.locales["es"] = {
@@ -204,9 +207,8 @@ const ArrowRightIcon = ({ size = 14, color = "black" }) => (
   </Svg>
 );
 
-import React, { useState, useRef } from "react";
 
-export default function App({ navigation }) {
+export default function HomeScreen({ navigation }) {
   const topImages = [
     require("./assets/ropa/tops/top1.jpg"),
     require("./assets/ropa/tops/top2.jpg"),
@@ -328,14 +330,14 @@ const animateImages = async (
     );
   };
 
-  const [fontsLoaded] = useFonts({
-    PressStart2PRegular: require("./assets/fonts/PressStart2P-Regular.ttf"),
-    RobotoCondensedRegular: require("./assets/fonts/RobotoCondensed-Regular.ttf"),
-  });
+  // const [fontsLoaded] = useFonts({
+  //   PressStart2PRegular: require("./assets/fonts/PressStart2P-Regular.ttf"),
+  //   RobotoCondensedRegular: require("./assets/fonts/RobotoCondensed-Regular.ttf"),
+  // });
 
-  if (!fontsLoaded) {
-    return null;
-  }
+  // if (!fontsLoaded) {
+  //   return null;
+  // }
 
   const productData = {
     accessories: [
